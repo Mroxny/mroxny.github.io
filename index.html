@@ -17,7 +17,20 @@
 
   <title>Hello World!</title>  
 
-<link href="./assets/css/main.3f6952e4.css" rel="stylesheet"></head>
+<link href="./assets/css/main.3f6952e4.css" rel="stylesheet">
+
+<style>
+.hero-full-container   {
+  background-image: url('./assets/images/space1.jpg');
+}
+@media only screen and (max-width: 768px) {
+  .hero-full-container {
+    background-image: url('./assets/images/space2.jpg');
+  }
+}
+</style>
+
+</head>
 
 <body class="minimal">
 <div id="site-border-left"></div>
@@ -48,7 +61,7 @@
   </nav>
 </header>
 <!-- Add your site or app content here -->
-  <div class="hero-full-container background-image-container white-text-container" style="background-image: url('./assets/images/space.jpg')">
+  <div class="hero-full-container background-image-container white-text-container">
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
@@ -74,11 +87,29 @@
   <div class="section-container">
     <div class="container">
       <div class="row">
+
+        <div style="margin-bottom: 150px; margin-top: 50px;" class="col-sm-8 col-sm-offset-2 section-container-spacer">
+          <div class="text-center">
+            <h1 class="h2">About</h1>
+            <p style="font-size: 20px;">I am a novice programmer open to learning new technologies and programming techniques. Coding is my hobby and I like creating new apps or automating things, this is the reason why I want to turn it into a professional job. I already have 4 years of non-commercial C# and Java programming experience. During this time, I have been writing various small open source projects to prepare for a career I want to start soon.</p>
+          
+                      <a href="https://www.facebook.com/maciej.mrozek.3" title="Facebook" class="fa-icon" target="blank">
+                        <i class="fa fa-facebook"></i>
+                      </a>
+                      <a href="https://www.instagram.com/czasem_ja_/" title="Instagram" class="fa-icon" target="blank">
+                          <i class="fa fa-instagram"></i>
+                      </a>
+                      <a href="https://www.linkedin.com/in/maciej-mrozek-7541811a1/" title="Linkedin" class="fa-icon" target="blank">
+                        <i class="fa fa-linkedin"></i>
+                      </a>
+
+          </div>
+        </div>
         
-        <div class="col-sm-8 col-sm-offset-2 section-container-spacer">
+        <div  class="col-sm-8 col-sm-offset-2 section-container-spacer">
           <div class="text-center">
             <h1 class="h2">Projects</h1>
-            <p>Nulla facilisi. Vivamus vestibulum, elit in scelerisque ultricies, nisl nunc pulvinar ligula, id sodales arcu sapien in nisi. Quisque libero enim, mattis non augue posuere, venenatis dapibus urna.</p>
+            <p style="font-size: 15px;">These are the projects I have worked on so far. Thanks to these I gained my experience in coding and programming thinking</p>
           </div>
         </div>
   
@@ -91,38 +122,38 @@
                   <div class="row">
                       <div class="col-sm-4">
   
-                        <a href="./work.html" title="" class="black-image-project-hover">
+                        <a href="./projects/project_mymap.html" title="" class="black-image-project-hover">
                           <img src="./assets/images/work01-hover.jpg" alt="" class="img-responsive">
                         </a>
                         <div class="card-container card-container-lg">
-                          <h4>001/006</h4>
-                          <h3>Fringilla sit amet</h3>
+                          <h4>001/005</h4>
+                          <h3>MyMap</h3>
                           <p>Nulla facilisi. Vivamus vestibulum, elit in scelerisque ultricies.</p>
-                          <a href="./work.html" title="" class="btn btn-default">Discover</a>
+                          <a href="./projects/project_mymap.html" title="" class="btn btn-default">Discover</a>
                         </div>
                       </div>
 
                       <div class="col-sm-4">
-                        <a href="./work.html" title="" class="black-image-project-hover">
+                        <a href="./projects/project_myfridge.html" title="" class="black-image-project-hover">
                           <img src="./assets/images/work02-hover.jpg" alt="" class="img-responsive">
                         </a>
                         <div class="card-container card-container-lg">
-                          <h4>002/006</h4>
-                          <h3>Nulla scelerisque</h3>
+                          <h4>002/005</h4>
+                          <h3>MyFridge</h3>
                           <p>Proin pharetra metus id iaculis dignissim. In aliquet lorem ut ex ullamcorper.</p>
-                          <a href="./work.html" title="" class="btn btn-default">Discover</a>
+                          <a href="./projects/project_myfridge.html" title="" class="btn btn-default">Discover</a>
                         </div>
                       </div>
 
                       <div class="col-sm-4">
-                        <a href="./work.html" title="" class="black-image-project-hover">
+                        <a href="./projects/project_rewers.html" title="" class="black-image-project-hover">
                           <img src="./assets/images/work03-hover.jpg" alt="" class="img-responsive">
                         </a>
                         <div class="card-container card-container-lg">
-                          <h4>003/006</h4>
-                          <h3>Vivamus vestibulum</h3>
+                          <h4>003/005</h4>
+                          <h3>ReWers</h3>
                           <p>Fusce sed hendrerit augue, a rhoncus velit. In non lorem mattis, tempor sem sit amet.</p>
-                          <a href="./work.html" title="" class="btn btn-default">Discover</a>
+                          <a href="./projects/project_rewers.html" title="" class="btn btn-default">Discover</a>
                         </div>
                       </div>
                       
@@ -133,40 +164,29 @@
               <div class="item">
                   <div class="row">
                     <div class="col-sm-4">
-                      <a href="./work.html" class="black-image-project-hover">
+                      <a href="./projects/project_fb.html" class="black-image-project-hover">
                         <img src="./assets/images/work02-hover.jpg" alt="Image" class="img-responsive">
                       </a>
                       <div class="card-container">
-                        <h4>004/006</h4>
-                        <h3>Nulla scelerisque</h3>
+                        <h4>004/005</h4>
+                        <h3>Football Ball</h3>
                         <p>Proin pharetra metus id iaculis dignissim. In aliquet lorem ut ex ullamcorper.</p>
-                        <a href="./work.html" class="btn btn-default">Discover</a>
+                        <a href="./projects/project_fb.html" class="btn btn-default">Discover</a>
                       </div>
                     </div>
 
                      <div class="col-sm-4">
-                        <a href="./work.html" class="black-image-project-hover">
+                        <a href="./projects/project_cf.html" class="black-image-project-hover">
                           <img src="./assets/images/work01-hover.jpg" alt="Image" class="img-responsive">
                         </a>
                         <div class="card-container">
-                          <h4>005/006</h4>
-                          <h3>Fringilla sit amet</h3>
+                          <h4>005/005</h4>
+                          <h3>CyberFour (coming soon)</h3>
                           <p>Nulla facilisi. Vivamus vestibulum, elit in scelerisque ultricies.</p>
-                          <a href="./work.html" class="btn btn-default">Discover</a>
+                          <a href="./projects/project_cf.html" class="btn btn-default">Discover</a>
                         </div>
                       </div>
-                      
-                      <div class="col-sm-4">
-                        <a href="./work.html" class="black-image-project-hover">
-                          <img src="./assets/images/work03-hover.jpg" alt="Image" class="img-responsive">
-                        </a>
-                        <div class="card-container">
-                          <h4>006/006</h4>
-                          <h3>Vivamus vestibulum</h3>
-                          <p>Fusce sed hendrerit augue, a rhoncus velit. In non lorem mattis, tempor sem sit amet.</p>
-                          <a href="./work.html" class="btn btn-default">Discover</a>
-                        </div>
-                      </div>
+                    
                       
                   </div>
                   <!--/row-->
@@ -197,20 +217,42 @@
         <div class="col-sm-8 col-sm-offset-2 section-container-spacer">
           <div class="text-center">
             <h1 class="h2">Preferred Technologies</h1>
-            <p>Coming soon.</p>
+            <p style="font-size: 15px;">I feel best in these environments (but I'am open to new ones).</p>
           </div>
         </div>
-  
-        <div class="col-md-12">
-       
-        <div id="myCarousel" class="carousel slide projects-carousel">
-          
-       </div>
+
+        <div class="col-sm-4">
+          <img src="./assets/images/logo_as.jpg" alt="" class="img-responsive">
+          <div style="padding: 20px; border: 1px solid; border-top: 0px; height: 230px;">
+            <h3>Android Studio</h3>
+            <p>I was inspired by how mobile applications work, so I decided to learn to work in this environment. Based on the IntelliJ IDEA platform.</p>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <img src="./assets/images/logo_unity.jpg" alt="" class="img-responsive">
+          <div style="padding: 20px; border: 1px solid; border-top: 0px; height: 230px;">
+            <h3>Unity</h3>
+            <p>Unity is the perfect platform for creating mobile games (and more). You can create bigger or smaller games here in an easy and convenient way, what comes very easily to me</p>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <img src="./assets/images/logo_ue.jpg" alt="" class="img-responsive">
+          <div style="padding: 20px; border: 1px solid; border-top: 0px; height: 230px;">
+            <h3>Unreal Engine</h3>
+            <p>I have been working on this platform for as long as I can remember. I love working with blueprints and built-in editors in this environment</p>
+          </div>
+        </div>
+
+        
   
   
   
       <!--/myCarousel-->
       </div>
+
+      
   
   
   
