@@ -1,0 +1,115 @@
+<html>
+<head>
+	<title>FIFO</title>
+</head>
+<body>
+    <h1>FIFO</h1>
+
+    <label>Liczby oddzielone spacjami (nie dawac spacji na koncu)</label><br/>
+    <input type="text" name="frames" id="fr"><br/>
+    <label>Liczba wierszy</label><br/>
+    <input type="number" name="rows" id="rNum" style="width: 75px" value="4"><br/>
+    <input type="button" onclick="calc()" value="Calculate"><br/>
+
+
+	<script>
+
+        function calc(){
+            // get input
+            let frames = document.getElementById("fr").value;
+            let rows = document.getElementById("rNum").value;
+
+
+            // rozdziel input na tablice
+            let framesArr= frames.split(" ");
+            displayFrames(framesArr);
+
+            let table = new Array(rows);
+            let pivot = 0;
+
+            let pFaults = 0;
+            let trans = new Array();
+
+            // tworzenie dwuwymiarowej tablicy (tabeli)
+            for(i = 0; i < rows; i++){
+                table[i] = new Array(framesArr.length);
+            }
+
+            //Liczenie wartosci i wstawianie do tablicy (FIFO)
+            for(j = 0; j < framesArr.length; j++){
+
+                //copy column
+                for(i = 0; i < rows; i++){
+                    if(j-1 >= 0 && table[i][j-1] != null)
+                        table[i][j] = table[i][j-1];
+                }
+
+                let col = new Array(rows);
+                for(k = 0; k < rows; k++) 
+                    col[k] = table[k][j];
+
+                if(!col.includes(framesArr[j])){
+
+                    if(table[pivot][j] != null){
+                        let s = "("+table[pivot][j] + " > " + framesArr[j]+")";
+                        trans.push(s);
+                    }
+                    pFaults++;
+
+                    table[pivot][j] = framesArr[j];
+                    pivot++;
+                }
+
+
+                if(pivot >= rows) pivot=0;
+
+            }
+
+
+            // wyswietlanie tabeli (okropne ale na szybko)
+            document.write("Table:<br/>");
+
+            document.write("1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 ");
+            document.write("<br/>");
+            for(i = 0; i < framesArr.length; i++){
+                document.write("# ");
+            }
+            document.write("<br/>");
+
+
+            for(i = 0; i < table.length; i++){
+                for(j = 0; j < table[i].length; j++){
+                    if(table[i][j] != null)
+                        document.write(table[i][j]+" ");
+                    else 
+                        document.write("n ");
+                }
+                document.write("<br/>");
+            }
+            document.write("<br/>");
+
+            //wyswietlanie parametrow
+            document.write("Braki stron: "+pFaults+"<br/>");
+            document.write("Zastepowanie stron: "+trans+"<br/>");
+
+
+
+
+
+        }
+
+        function displayFrames(arr){
+            document.write("Frames:<br/>");
+            
+            for(i = 0;i <arr.length; i++){
+                document.write(arr[i]+" ");
+            }
+            document.write("<br/>");
+
+
+        }
+
+
+    </script>
+</body>
+</html>

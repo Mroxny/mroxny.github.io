@@ -1,0 +1,152 @@
+<html>
+<head>
+	<title>Second Chance</title>
+</head>
+<body>
+    <h1>SECOND CHANCE</h1>
+
+    <label>Liczby oddzielone spacjami (nie dawac spacji na koncu)</label><br/>
+    <input type="text" name="frames" id="fr"><br/>
+    <label>Liczba wierszy</label><br/>
+    <input type="number" name="rows" id="rNum" style="width: 75px" value="4"><br/>
+    <input type="button" onclick="calc()" value="Calculate"><br/>
+
+
+	<script>
+
+
+        class Flag {
+            constructor(value, shield) {
+                this.value = value;
+                this.shield = shield;
+            }
+        }
+
+
+
+
+        function calc(){
+            // get input
+            let frames = document.getElementById("fr").value;
+            let rows = document.getElementById("rNum").value;
+
+
+            // rozdziel input na tablice
+            let framesArr= frames.split(" ");
+            displayFrames(framesArr);
+
+            let table = new Array(rows);
+            let pivot = 0;
+
+            let pFaults = 0;
+            let trans = new Array();
+
+            // tworzenie dwuwymiarowej tablicy (tabeli)
+            for(i = 0; i < rows; i++){
+                table[i] = [];
+            }
+
+            //Liczenie wartosci i wstawianie do tablicy (FIFO)
+            for(j = 0; j < framesArr.length; j++){
+
+                //copy column
+                for(i = 0; i < rows; i++){
+                    if(j-1 >= 0 && table[i][j-1] != null)
+                        table[i][j] = table[i][j-1];
+                }
+
+                let col = new Array(rows);
+                for(k = 0; k < rows; k++) 
+                    col[k] = table[k][j];
+
+                if(indexOfValue(col,framesArr[j]) == -1){
+
+                    if(table[pivot][j] != null){
+                        let found = false;
+                        while(!found){
+                            if(pivot >= rows) pivot=0;
+                            
+                            if(table[pivot][j].shield){
+                                table[pivot][j].shield = false;
+                                pivot++; 
+                            }
+                            else found = true;
+                        }
+                    }
+                    
+                    if(table[pivot][j] != null){
+                            let s = "("+table[pivot][j].value + " > " + framesArr[j]+")";
+                            trans.push(s);
+                        }
+
+                    table[pivot][j] = new Flag (framesArr[j], true);
+
+                    pFaults++;
+                    pivot++;
+                }
+                else{
+                    
+                    table[indexOfValue(col, framesArr[j])][j].shield = true;
+                }
+
+
+                if(pivot >= rows) pivot=0;
+
+            }
+
+
+            // wyswietlanie tabeli (okropne ale na szybko)
+            document.write("Table:<br/>");
+
+            document.write("1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 ");
+            document.write("<br/>");
+            for(i = 0; i < framesArr.length; i++){
+                document.write("# ");
+            }
+            document.write("<br/>");
+
+
+            for(i = 0; i < table.length; i++){
+                for(j = 0; j < table[i].length; j++){
+                    if(table[i][j] != null)
+                        document.write(table[i][j].value+" ");
+                    else 
+                        document.write("n ");
+                }
+                document.write("<br/>");
+            }
+            document.write("<br/>");
+
+            //wyswietlanie parametrow
+            document.write("Braki stron: "+pFaults+"<br/>");
+            document.write("Zastepowanie stron: "+trans+"<br/>");
+
+
+
+
+
+        }
+
+
+        function indexOfValue(arr, val){
+            for(i= 0; i<arr.length; i++){
+                if(arr[i] != null && arr[i].value == val) return i;
+            }
+            return -1;
+        }
+
+        function displayFrames(arr){
+            document.write("Frames:<br/>");
+            
+            for(i = 0;i <arr.length; i++){
+                document.write(arr[i]+" ");
+            }
+            document.write("<br/>");
+
+
+        }
+
+
+    </script>
+</body>
+</html>
