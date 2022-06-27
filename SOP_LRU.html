@@ -64,7 +64,7 @@
                             wrt[i][j] = wrt[i-1][j];
 							
 							if (wrt[i - 1][j] == num[i]) {
-                            wrt[i - 1][j] = 0;
+                            wrt[i - 1][j] = -1;
 							}
                         }
                         poprawne++;
@@ -123,7 +123,7 @@
 							document.write("n ");
 						}
 						else{
-							if(wrt[j][i] == 0){
+							if(wrt[j][i] == -1){
 							document.write(wrt[j-1][i]+ " ");
 							}
 							else {

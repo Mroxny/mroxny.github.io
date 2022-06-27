@@ -1,0 +1,169 @@
+<head>
+	<title>OPT</title>
+</head>
+<body>
+    <h1>OPT</h1>
+
+    <label>Liczby oddzielone spacjami (nie dawac spacji na koncu)</label><br/>
+    <input type="text" name="frames" id="fr"><br/>
+    <label>Liczba wierszy</label><br/>
+    <input type="number" name="rows" id="rNum" style="width: 75px" value="4"><br/>
+    <input type="button" onclick="calc()" value="Calculate"><br/>
+
+
+
+    <script>
+
+
+        function calc(){
+
+            let strNums = document.getElementById("fr").value.split(" ");
+            let ramki = document.getElementById("rNum").value;
+
+
+            let ile = strNums.length;
+
+            
+
+            num = new Array(ile);
+            for ( i = 0; i < strNums.length; i++) 
+                num[i] = strNums[i];
+
+
+            let wrt = new Array(ile);
+            for(i= 0; i < ile; i++)
+                wrt[i] = new Array(ramki);
+
+
+            let poprawne = 0;
+
+            for(i = 0; i<wrt.length; i++){
+                if (i == 0) {
+                    wrt[0][0] = num[0];
+                }
+                else if(i < ramki){
+                    for (j = 0; j < ramki; j++) {
+                        if(wrt[i-1][j] != null){
+                            wrt[i][j] = wrt[i-1][j];
+                        }
+                        else{
+                            wrt[i][j]= num[i];
+                            break;
+                        }
+                    }
+                }
+                else{
+                    let czyJest = false;
+                    for ( j = 0; j < ramki; j++) {
+                        if(wrt[i-1][j] == num[i]){
+                            czyJest = true;
+                        }
+                    }
+                    if(czyJest){
+                        for (j = 0; j < ramki; j++) {
+                            wrt[i][j] = wrt[i-1][j];
+                        }
+                        poprawne++;
+                    }
+                    else{
+                        let ktory = 0;
+                        let zaile = 0;
+                        let braki = [];
+                        for ( j = 0; j < ramki; j++) {
+                            let pomoc = 0;
+                            for (k = i; k < num.length; k++) {
+                                pomoc++;
+
+                                if(num[k] == wrt[i-1][j] ){
+                                    if(pomoc > zaile) {
+                                        zaile = pomoc;
+                                        ktory = j;
+                                    }
+                                    break;
+                                }
+                            }
+
+                            if((pomoc == num.length - i) && num[(num.length)-1] != wrt[i-1][j]
+                            ){
+                                ktory = j;
+                                zaile = 999999;
+                                braki.push(j);
+                            }
+                        }
+                        if(braki.length <= 1) {
+                            for ( j = 0; j < ramki; j++) {
+                                wrt[i][j] = wrt[i - 1][j];
+                            }
+                            wrt[i][ktory] = num[i];
+                        }
+                        else{
+                            let dowymiany = 0;
+                            let najdalej = 0;
+                            for ( j = 0; j < braki.length; j++) {
+                                let pomoc2 = 0;
+                                for ( k = i-1; k >= 0 ; k--) {
+                                    if(wrt[k][braki[j]] == wrt[i-1][braki[j]]) {
+                                        
+                                        pomoc2++;
+                                    }
+                                    else{
+                                
+                                        if(najdalej < pomoc2){
+                                            najdalej = pomoc2;
+                                            dowymiany = braki[j];
+                                        }
+                                        break;
+                                    }
+                                }
+                                if(pomoc2 == i){
+                                dowymiany = braki[j];
+                                najdalej = 999999999;
+                                }
+                            }
+                            for ( j = 0; j < ramki; j++) {
+                                wrt[i][j] = wrt[i - 1][j];
+                            }
+                            wrt[i][dowymiany] = num[i];
+                        }
+                    }
+                }
+            }
+
+
+           document.write("<br/>");
+            // Printing the stored numbers using for loop
+            for ( i = 0; i < num.length; i++) {
+                document.write((i+1)%10+" ");
+            }
+
+            document.write("<br/>");
+
+           document.write("<br/>");
+            // Printing the stored numbers using for loop
+            for ( i = 0; i < num.length; i++) {
+                document.write(num[i]+" ");
+            }
+
+            document.write("<br/>");
+            document.write("<br/>");
+
+            for ( i = 0; i < ramki; i++) {
+                for ( j = 0; j < ile; j++) {
+                    if(wrt[j][i] == null){
+                        document.write("n ");
+                        
+                    }
+                    else {
+                        document.write(wrt[j][i]+ " ");
+                    }
+                }
+                document.write("<br/>");
+
+            }
+            document.write("Braki stron: " + (ile-poprawne));
+        }
+        
+
+        </script>
+    </body>
+</html>
